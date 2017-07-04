@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#138613"
+
+    tools:context="com.example.pumi.quizpilkarski.MainActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/background_main"
+        android:scaleX="1.16"/>
+    <ImageView
+        android:id="@+id/title_mainmenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_main"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_marginBottom="344dp" />
+
+    <Button
+        android:id="@+id/Startgame_button"
+        android:layout_width="500px"
+        android:layout_height="200px"
+
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/startbutton"
+
+        android:onClick="SaveText"/>
+    <Button
+        android:id="@+id/Highscores_button"
+        android:layout_width="500px"
+        android:layout_height="200px"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Startgame_button"
+        android:layout_marginTop="10px"
+        android:background="@drawable/highscoresbutton"
+
+        android:onClick="Highscores_table"/>
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="500px"
+        android:layout_height="200px"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Highscores_button"
+        android:layout_marginTop="10px"
+
+        android:background="@drawable/exitbutton"
+
+        android:onClick="Exit"/>
+
+</RelativeLayout>
+
+    <!--    PRZYKŁADOWY PRZYCISK Z ODPOWIEDZIĄ: -->
+    <!--android:background="@drawable/test_button"
+    android:textColor="#ffffff"
+    android:text="Ricardo Rodriguez"-->

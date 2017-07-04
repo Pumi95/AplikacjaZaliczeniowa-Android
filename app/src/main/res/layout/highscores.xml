@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/background_main"
+        android:scaleX="1.16"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/test_highscores"
+        android:layout_marginTop="90dp"
+        android:scaleX="0.9"/>
+    <ImageView
+        android:id="@+id/title_mainmenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_ingame"
+
+        android:layout_marginBottom="444dp" />
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:stretchColumns="1"
+        android:id="@+id/highscorestable">
+        <TableRow>
+            <TextView
+                android:textColor="#ffffff"
+                android:layout_marginLeft="16dp"
+                android:text="Pozycja"
+                android:padding="18dip" />
+            <TextView
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:text="Nazwa Gracza"
+                android:padding="18dip" />
+            <TextView
+                android:textColor="#ffffff"
+                android:layout_marginRight="16dp"
+                android:text="Punkty"
+                android:gravity="right"
+                android:padding="18dip" />
+        </TableRow>
+        <TableRow><Space
+            android:layout_height="20dp"/></TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/first_id"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/first_name"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/first_score"
+                android:textColor="#ffffff"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/second_id"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/second_name"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/second_score"
+                android:textColor="#ffffff"
+
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/third_id"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/third_name"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/third_score"
+                android:textColor="#ffffff"
+
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/forth_id"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/forth_name"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/forth_score"
+                android:textColor="#ffffff"
+
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/fifth_id"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/fifth_name"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:padding="9dip" />
+            <TextView
+                android:id="@+id/fifth_score"
+                android:textColor="#ffffff"
+
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:padding="9dip" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="500px"
+        android:layout_height="200px"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/highscorestable"
+        android:layout_marginTop="40px"
+        android:background="@drawable/returnbutton"
+
+        android:onClick="Return"/>
+
+
+    <!--
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_centerVertical="true"
+
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="  1. Testowy napis 1000"
+
+        android:background="@drawable/highscores_row"/>
+-->
+</RelativeLayout>

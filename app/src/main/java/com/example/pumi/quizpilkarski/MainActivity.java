@@ -44,6 +44,13 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    //  Przycisk włączający grę
+    public void Start_game(View v) {
+        Context context;
+        context = getApplicationContext();
+        Intent intent = new Intent(context,Game.class);
+        startActivity(intent);
+    }
 
 
 
@@ -52,9 +59,10 @@ public class MainActivity extends Activity {
 
 //  ----------------------------------------------------------------------------------------------
 //                                          BRUDNOPIS
+/*
 
 
-    /*public void SaveText(View view){
+    public void SaveText(View view){
         try {
             // Otwarcie pliku myfilename.txt do zapisu z trybem dopisania do
             //istniejącego pliku:
@@ -87,4 +95,8 @@ public class MainActivity extends Activity {
             //gdy nie uda się zapisać:
             Toast.makeText(this,"Sorry Text could't be added", Toast.LENGTH_LONG).show();
         }
-    }*/
+    }
+
+
+
+----------------------------------------------------------------------------------------------  */

@@ -33,7 +33,7 @@
         android:layout_centerVertical="true"
         android:background="@drawable/startbutton"
 
-        android:onClick="SaveText"/>
+        android:onClick="Start_game"/>
     <Button
         android:id="@+id/Highscores_button"
         android:layout_width="500px"

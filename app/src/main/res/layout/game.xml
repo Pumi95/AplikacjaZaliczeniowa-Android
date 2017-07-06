@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/background_main"
+        android:scaleX="1.16"/>
+    <ImageView
+        android:id="@+id/title_ingame"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_ingame"
+
+        android:layout_marginBottom="444dp" />
+
+    <ImageView
+        android:id="@+id/question_pic"
+
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:layout_marginTop="300px"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageView
+        android:layout_width="500px"
+        android:layout_height="200px"
+        android:layout_below="@+id/question_pic"
+        android:layout_centerHorizontal="true"
+
+        android:src="@drawable/test_button"/>
+    <TextView
+        android:id="@+id/question_text"
+
+        android:layout_width="470px"
+        android:layout_height="170px"
+        android:layout_below="@+id/question_pic"
+        android:layout_marginTop="15px"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/answer_1"
+
+        android:layout_width="500px"
+        android:layout_height="100px"
+        android:layout_below="@+id/question_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+        android:textColor="#ffffff"
+        android:background="@drawable/answerbutton"/>
+    <Button
+        android:id="@+id/answer_2"
+
+        android:layout_width="500px"
+        android:layout_height="100px"
+        android:layout_below="@+id/answer_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+
+        android:textColor="#ffffff"
+        android:background="@drawable/answerbutton"/>
+    <Button
+        android:id="@+id/answer_3"
+
+        android:layout_width="500px"
+        android:layout_height="100px"
+        android:layout_below="@+id/answer_2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+
+        android:textColor="#ffffff"
+        android:background="@drawable/answerbutton"/>
+    <Button
+        android:id="@+id/answer_4"
+
+        android:layout_width="500px"
+        android:layout_height="100px"
+        android:layout_below="@+id/answer_3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+
+        android:textColor="#ffffff"
+        android:background="@drawable/answerbutton"/>
+
+
+</RelativeLayout>

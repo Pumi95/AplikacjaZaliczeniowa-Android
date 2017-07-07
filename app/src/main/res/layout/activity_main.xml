@@ -11,6 +11,7 @@
     tools:context="com.example.pumi.quizpilkarski.MainActivity">
 
     <ImageView
+        android:id="@+id/background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/background_main"
@@ -57,6 +58,11 @@
         android:background="@drawable/exitbutton"
 
         android:onClick="Exit"/>
+
+    <ImageView
+        android:id="@+id/testicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
 

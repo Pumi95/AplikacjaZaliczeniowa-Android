@@ -1,10 +1,21 @@
 package com.example.pumi.quizpilkarski;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.IntentCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +30,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Random;
+import java.util.UUID;
 import java.util.Vector;
 
 
@@ -27,6 +39,8 @@ import java.util.Vector;
  */
 
 public class Game extends Activity{
+
+    private static final int NOTIFICATION_ID= 1; //arbitrary constant
 
     public int points = 0;
     public int questionsCounter = 0;
@@ -71,10 +85,10 @@ public class Game extends Activity{
             e.printStackTrace();
         }
 
-        //  losowanie 5-ciu pytań
+        //  losowanie 8-ciu pytań
         final Vector<Question> queue = new Vector<>();
 
-        int[] chosenList = new int[5];
+        int[] chosenList = new int[8];
         for(int x : chosenList) {
             x = -1;
         }
@@ -82,8 +96,8 @@ public class Game extends Activity{
         int chosen;
         int it = 0;
         boolean test = true;
-        while (it < 5) {
-            chosen = randInt(0, 13);
+        while (it < 8) {
+            chosen = randInt(0, 44);
             for(int x : chosenList){
                 if(x == chosen){
                     test = false;
@@ -111,14 +125,27 @@ public class Game extends Activity{
         it = 1;
         b1.setOnClickListener(new MyLovelyOnClickListener(it){
             public void onClick(View v) {
-                if(getQuestionsCounter()<5) {
+                if(getQuestionsCounter()<7) {
                     setAnsw(b1);
                     if(getAnsw().equals(queue.get(getQuestionsCounter()).ans_good)){
                         addPoint();
                     }
-                    toastMe(queue);
+                    //toastMe(queue);
                     setQuestionsCounter();
                     changeQuestion(getQuestionsCounter(), queue);
+                }
+                else {
+                    setAnsw(b1);
+                    if(getAnsw().equals(queue.get(getQuestionsCounter()).ans_good)){
+                        addPoint();
+                    }
+                    Context context;
+                    context = getApplicationContext();
+                    Bundle extras = new Bundle();
+                    Intent intent = new Intent(Game.this,EndScore.class);
+                    extras.putString("WYNIK", getPoints().toString());
+                    intent.putExtras(extras);
+                    startActivity(intent);
                 }
 
             }
@@ -126,62 +153,91 @@ public class Game extends Activity{
         );
         b2.setOnClickListener(new MyLovelyOnClickListener(it){
             public void onClick(View v) {
-                if(getQuestionsCounter()<5) {
+                if(getQuestionsCounter()<7) {
+                     setAnsw(b2);
+                     if(getAnsw().equals(queue.get(getQuestionsCounter()).ans_good)){
+                         addPoint();
+                     }
+                     //toastMe(queue);
+                     setQuestionsCounter();
+                     changeQuestion(getQuestionsCounter(), queue);
+                }
+                else {
                     setAnsw(b2);
                     if(getAnsw().equals(queue.get(getQuestionsCounter()).ans_good)){
                         addPoint();
-                        }
-                    toastMe(queue);
-                    setQuestionsCounter();
-                    changeQuestion(getQuestionsCounter(), queue);
+                    }
+                    Context context;
+                    context = getApplicationContext();
+                    Bundle extras = new Bundle();
+                    Intent intent = new Intent(Game.this,EndScore.class);
+                    extras.putString("WYNIK", getPoints().toString());
+                    intent.putExtras(extras);
+                    startActivity(intent);
                 }
+
             }
         }
         );
-        b3.setOnClickListener(new MyLovelyOnClickListener(it) {
+        b3.setOnClickListener(new MyLovelyOnClickListener(it){
             public void onClick(View v) {
-                if (getQuestionsCounter() < 5) {
+                if(getQuestionsCounter()<7) {
                     setAnsw(b3);
                     if(getAnsw().equals(queue.get(getQuestionsCounter()).ans_good)){
                         addPoint();
                     }
-                    toastMe(queue);
+                    //toastMe(queue);
                     setQuestionsCounter();
                     changeQuestion(getQuestionsCounter(), queue);
+                }
+                else {
+                    setAnsw(b3);
+                    if(getAnsw().equals(queue.get(getQuestionsCounter()).ans_good)){
+                        addPoint();
+                    }
+                    Context context;
+                    context = getApplicationContext();
+                    Bundle extras = new Bundle();
+                    Intent intent = new Intent(Game.this,EndScore.class);
+                    extras.putString("WYNIK", getPoints().toString());
+                    intent.putExtras(extras);
+                    startActivity(intent);
                 }
             }
         }
         );
         b4.setOnClickListener(new MyLovelyOnClickListener(it){
             public void onClick(View v) {
-                if(getQuestionsCounter()<5) {
+                if(getQuestionsCounter()<7) {
                     setAnsw(b4);
                     if(getAnsw().equals(queue.get(getQuestionsCounter()).ans_good)){
                         addPoint();
                     }
-                    toastMe(queue);
+                    //toastMe(queue);
                     setQuestionsCounter();
                     changeQuestion(getQuestionsCounter(), queue);
                 }
-
+                else {
+                    setAnsw(b4);
+                    if(getAnsw().equals(queue.get(getQuestionsCounter()).ans_good)){
+                        addPoint();
+                    }
+                    Context context;
+                    context = getApplicationContext();
+                    Bundle extras = new Bundle();
+                    Intent intent = new Intent(Game.this,EndScore.class);
+                    extras.putString("WYNIK", getPoints().toString());
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                }
             }
         }
         );
 
 
-
-        //      tu dalszy kod !!!!!!!!!!!!!!!!!!!!!!
-        //      tu dalszy kod !!!!!!!!!!!!!!!!!!!!!!
-        //      tu dalszy kod !!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-
         //  TYLKO do doddawania pytań
-/*
-        try {
+
+        /*try {
             AddQuestions();
         }
         catch (IOException e) {
@@ -211,7 +267,14 @@ public class Game extends Activity{
     public String getAnsw() {
         return answ1;
     }
-
+    public void onBackPressed() {
+        Intent intents = new Intent(Game.this, MainActivity.class);
+        intents.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intents);
+        finish();
+    }
     public void toastMe(Vector<Question> queue){
         Toast.makeText(this,queue.get(getQuestionsCounter()).ans_good + " " + getAnsw() + " p:" + getPoints(),Toast.LENGTH_LONG).show();
     }
@@ -228,7 +291,7 @@ public class Game extends Activity{
         tv = (TextView) findViewById(R.id.question_text);
         iv = (ImageView) findViewById(R.id.question_pic);
 
-        if(it < 5){
+        if(it < 8){
 
 
             int resID = getResources().getIdentifier(queue.get(it).img_src, "drawable", "com.example.pumi.quizpilkarski");
@@ -286,6 +349,41 @@ public class Game extends Activity{
         listaPytan.add(new Question("griezmann_tmp", "Gdzie grał Griezmann przed Atletico?", "West Ham United", "Olympique Marsylia", "Real Sociedad", "Olympique Lyon", "Real Sociedad"));
         listaPytan.add(new Question("glik_tmp", "W którym roku urodził się Kamil Glik?", "1988", "1989", "1990", "1991", "1988"));
         listaPytan.add(new Question("baggio_tmp", "Kim jest piłkarz ze zdjęcia?", "Alessandro Del Piero", "Paolo Rossi", "Roberto Baggio", "Christian Vieri", "Roberto Baggio"));
+        listaPytan.add(new Question("wba_tmp", "Czyje to koszulki ?", "FC Lorient", "West Bromwich Albion", "Udinese Calcio", "Hertha Berlin", "West Bromwich Albion"));
+        listaPytan.add(new Question("villareal_tmp", "Czyje to koszulki ?", "Atletico Madryt", "Espanyol", "Villareal", "Leganes", "Villareal"));
+        listaPytan.add(new Question("piast_tmp", "Czyje to koszulki ?", "Bordeaux", "Lech Poznań", "Chelsea", "Piast Gliwice", "Piast Gliwice"));
+        listaPytan.add(new Question("liverpool_tmp", "Czyje to koszulki?", "Liverpool", "Manchester United", "Bayern Monachium", "AS Roma", "Liverpool"));
+        listaPytan.add(new Question("leeds_tmp", "Czyje to koszulki?", "West Bromwich Albion", "Crystal Palace", "Leeds United", "Tottenham", "Leeds United"));
+        listaPytan.add(new Question("nice_tmp", "Czyje to koszulki?", "OGC Nice", "FC Lorient", "FC Bologna", "FSV Frankfurt", "OGC Nice"));
+        listaPytan.add(new Question("bordeaux_tmp", "Czyje to koszulki?", "Olympique Lyon", "Bordeaux", "Schalke 04", "Piast Gliwice", "Bordeaux"));
+        listaPytan.add(new Question("tsg_tmp", "Czyje to koszulki>", "TSG Hoffenheim", "Schalke 04", "Chelsea", "Everton", "TSG Hoffenheim"));
+        listaPytan.add(new Question("borussia_tmp", "Czyje to koszulki?", "Villareal", "Getafe", "Liverpool", "Borussia Dortmund", "Borussia Dortmund"));
+        listaPytan.add(new Question("udine_tmp", "Czyje to koszulki?", "Udinese", "West Bromwich Albion", "Juventus", "FC Parma", "Udinese"));
+        listaPytan.add(new Question("parma_tmp", "Czyje to koszulki?", "Udinese", "Juventus", "FC Parma", "West Bromwich Albion", "FC Parma"));
+        listaPytan.add(new Question("jardim_tmp", "Który szkoleniowiec widnieje na zdjęciu?", "Pep Guardiola", "Michał Probierz", "Leandro Jardim", "Jurgen Nagelsmann", "Leandro Jardim"));
+        listaPytan.add(new Question("valverde_tmp", "Który szkoleniowiec widnieje na zdjęciu?", "Ernesto Valverde", "Michał Latal", "Kiko Ramirez", "Luciano Spaletti", "Ernesto Valverde"));
+        listaPytan.add(new Question("julian_tmp", "Który szkoleniowiec widnieje na zdjęciu?", "Andre Villas_Boas", "Luigi Di Baggio", "Julian Nagelsmann", "Mauricio Pochettino", "Julian Nagelsmann"));
+        listaPytan.add(new Question("pochettino_tmp", "Który szkoleniowiec widnieje na zdjęciu?", "Andre Villas_Boas", "Luigi Di Baggio", "Julian Nagelsmann", "Mauricio Pochettino", "Mauricio Pochettino"));
+        listaPytan.add(new Question("cl_tmp", "Kto wygrał Ligę mistrzów w sezonie 2006/2007?", "AC Milan", "Manchester United", "Chelsea", "FC Barcelona", "AC Milan"));
+        listaPytan.add(new Question("cl_tmp", "Kto wygrał Ligę mistrzów w sezonie 2005/2006?", "AC Milan", "Manchester United", "Chelsea", "FC Barcelona", "FC Barcelona"));
+        listaPytan.add(new Question("cl_tmp", "Kto wygrał Ligę mistrzów w sezonie 2004/2005?", "AC Milan", "Manchester United", "Liverpool", "FC Barcelona", "Liverpool"));
+        listaPytan.add(new Question("cl_tmp", "Kto wygrał Ligę mistrzów w sezonie 2003/2004?", "AC Milan", "Manchester United", "FC Porto", "FC Barcelona", "FC Porto"));
+        listaPytan.add(new Question("cl_tmp", "Kto wygrał Ligę mistrzów w sezonie 1999/2000?", "AC Milan", "Real Madryt", "Manchester United", "Juventus Turyn", "Real Madryt"));
+        listaPytan.add(new Question("cl_tmp", "Który z poniższych klubów wygrał Ligę Mistrzów najwięcej razy?", "Benfica", "Celtic", "Olympique Marsylia", "Chelsea", "Benfica"));
+        listaPytan.add(new Question("cl_tmp", "Który z poniższych klubów brał udział w finale Ligi Mistrzów najmniej razy?", "Valencia", "Arsenal", "Stade Reims", "Chelsea", "Arsenal"));
+        listaPytan.add(new Question("cl_tmp", "Który z poniższych klubów brał udział w finale Ligi Mistrzów najmniej razy?", "Hamburger SV", "AS Monaco", "Steaua Bukareszt", "Atletico Madryt", "AS Monaco"));
+        listaPytan.add(new Question("premier_tmp", "Który z podanych zawodników miał najwięcej występów na angielskich boiskach?", "Gary Speed", "David James", "Frank Lampard", "Gareth Barry", "Gareth Barry"));
+        listaPytan.add(new Question("premier_tmp", "Który z podanych zawodników jest najlepszym strzelcem na angielskich boiskach?", "Frank Lampard", "Wayne Rooney", "Alan Shearer", "Andrew Cole", "Alan Shearer"));
+        listaPytan.add(new Question("laliga_tmp", "Który z podanych zawodników miał najwięcej występów na hiszpańskich boiskach?", "Andoni Zubizarreta", "Raúl González", "Eusebio", "Francisco Buyo", "Andoni Zubizarreta"));
+        listaPytan.add(new Question("laliga_tmp", "Który z podanych zawodników jest najlepszym strzelcem na hiszpańskich boiskach?", "Raúl González", "Hugo Sánchez", "Alfredo Di Stéfano", "César Rodríguez", "Hugo Sánchez"));
+        listaPytan.add(new Question("seriea_tmp", "Który z podanych zawodników miał najwięcej występów na włoskich boiskach?", "Javier Zanetti", "Francesco Totti", "Gianluigi Buffon", "Paolo Maldini", "Paolo Maldini"));
+        listaPytan.add(new Question("seriea_tmp", "Który z podanych zawodników jest najlepszym strzelcem na włoskich boiskach?", "Alessandro Del Piero", "Roberto Baggio", "Silvio Piola", "Francesco Totti", "Silvio Piola"));
+        listaPytan.add(new Question("polska_tmp", "Który z podanych zawodników miał najwięcej występów w polskiej reprezentacji?", "Jacek Krzynówek", "Grzegorz Lato", "Michał Żewłakow", "Kazimierz Deyna", "Michał Żewłakow"));
+        listaPytan.add(new Question("polska_tmp", "Który z podanych zawodników jest najlepszym strzelcem w polskiej reprezentacji?", "Kazimierz Deyna", "Robert Lewandowski", "Grzegorz Lato", "Andrzej Szarmach", "Robert Lewandowski"));
+
+
+
+
 
 
 
@@ -305,7 +403,6 @@ public class Game extends Activity{
             Toast.makeText(this,"Sorry Text could't be added",Toast.LENGTH_LONG).show();
         }
     }
-
 
 }
 

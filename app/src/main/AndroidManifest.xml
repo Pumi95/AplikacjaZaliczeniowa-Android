@@ -16,9 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Highscores">
+        <activity android:name=".Highscores"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Game">
+        <activity android:name=".Game"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".EndScore"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

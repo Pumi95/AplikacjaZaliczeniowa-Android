@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/background_main"
         android:scaleX="1.16"/>
     <ImageView
@@ -151,14 +151,25 @@
         </TableRow>
     </TableLayout>
 
+    <TextView
+        android:id="@+id/secret"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10px"
+        android:textColor="#ffffff"
+        android:text=""/>
+
     <Button
         android:id="@+id/exit_button"
         android:layout_width="500px"
         android:layout_height="200px"
 
+
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/highscorestable"
         android:layout_marginTop="40px"
+        android:gravity="bottom"
         android:background="@drawable/returnbutton"
 
         android:onClick="Return"/>

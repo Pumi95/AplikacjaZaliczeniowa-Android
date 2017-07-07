@@ -2,7 +2,13 @@ package com.example.pumi.quizpilkarski;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v4.content.IntentCompat;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,7 +17,7 @@ import android.widget.Toast;
 *
 *                               WAŻNE!
 *                wyniki zapisane są w "scores_table.txt"
-*
+*                a statystyki w "secret_stat.txt"
 * */
 
 import java.io.BufferedReader;
@@ -26,11 +32,18 @@ import java.util.Vector;
  * Created by Pumi on 2017-06-29.
  */
 
-public class Highscores extends Activity  {
+public class Highscores extends Activity implements SensorEventListener {
+    private SensorManager mSensorManager;
+    private Sensor mProximity;
+    private static final int SENSOR_SENSITIVITY = 4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.highscores);
+
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
         try {
             ShowTable();
@@ -42,11 +55,14 @@ public class Highscores extends Activity  {
     }
 
     public void onBackPressed() {}
-
     public void Return(View v){
+        Intent intents = new Intent(Highscores.this, MainActivity.class);
+        intents.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intents);
         finish();
     }
-
     public void ShowTable () throws FileNotFoundException {     // ShowTable (View v)
         String[] scoresList = new String[5];
         try {
@@ -111,12 +127,51 @@ public class Highscores extends Activity  {
         textView.setText(place5[2]);
 
     }
+
+    //  czujnik zbliżenia
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(this, mProximity, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mSensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+            if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY) {
+                //near
+                try {
+                    InputStream instream = openFileInput("secret_stat.txt");
+
+                    if (instream != null) {
+                        InputStreamReader inputreader = new InputStreamReader(instream);
+                        BufferedReader buffreader = new BufferedReader(inputreader);
+                        String line = null;
+                        line = buffreader.readLine();
+                        TextView textView;
+                        textView = (TextView) findViewById(R.id.secret);
+                        textView.setText("Rozegrane gry: " + line);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            } else {
+                //far
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
 }
-/*
-
-String string = "004-034556";
-String[] parts = string.split("-");
-String part1 = parts[0]; // 004
-String part2 = parts[1]; // 034556
-
-*/
